@@ -1,3 +1,4 @@
+import { Statement } from "@modules/statements/entities/Statement";
 import { inject, injectable } from "tsyringe";
 
 import { IUsersRepository } from "../../../users/repositories/IUsersRepository";
@@ -19,7 +20,7 @@ export class GetStatementOperationUseCase {
     private statementsRepository: IStatementsRepository
   ) {}
 
-  async execute({ user_id, statement_id }: IRequest) {
+  async execute({ user_id, statement_id }: IRequest): Promise<Statement> {
     const user = await this.usersRepository.findById(user_id);
 
     if(!user) {
